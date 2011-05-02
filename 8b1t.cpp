@@ -18,6 +18,7 @@ void hertz(float hz, float l, double vol) {
 		p = rate / hz;
 		inc = o / p;
 	} else {
+		acc = 0;
 		inc = 0;
 	}
 	for (; loop < dur; acc += inc, loop++) {
