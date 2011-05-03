@@ -1,1 +1,17 @@
-8b1t stands for 8bit one tone
+8b1t takes triplets of numbers on stdin arranged like so:
+
+	440.00	0.75	1.0
+
+* The first number here says to play a 440 hz tone.
+* The second number says play it for .75 of "one second" (relative to 44100 hz signal by default)
+* The third number says to play it at full volume.
+
+A quarter-second rest looks like this:
+
+	0	.25	0
+
+8b1t converts them into character data corresponding to a Unsigned 8-bit audio at 44100 hertz by default (change at top of 8b1t.cpp file)
+
+
+
+

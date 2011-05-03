@@ -3,7 +3,7 @@
 #include <cstdlib>
 using namespace std;
 
-float rate = 8000.0f;
+float rate = 44100.0f;
 
 void hertz(float hz, float l, double vol) {
 	double p;
@@ -22,7 +22,7 @@ void hertz(float hz, float l, double vol) {
 		inc = 0;
 	}
 	for (; loop < dur; acc += inc, loop++) {
-		output = (unsigned char)((sin(acc) + 1.0) * 127.0 * vol);
+		output = (unsigned char)(sin(acc) * vol * 127.0) + 128;
 		write(1, &output, 1);
 	}
 }
