@@ -12,6 +12,6 @@ A quarter-second rest looks like this:
 
 8b1t converts them into character data corresponding to a Unsigned 8-bit audio at 8000 hertz by default
 
-
+see Makefile for usage
 
 
