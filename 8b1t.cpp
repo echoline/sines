@@ -1,9 +1,10 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
+#include <cstring>
 using namespace std;
 
-float rate = 44100.0f;
+float rate = 8000.0f;
 
 void hertz(float hz, float l, double vol) {
 	double p;
@@ -30,6 +31,17 @@ void hertz(float hz, float l, double vol) {
 int main(int argc, char **argv) {
 	int i;
 	float hz, length, volume;
+
+	for (i = 1; i < argc; i++) {
+		if (!strcasecmp(argv[i], "-h")) {
+			cerr << "usage:\t" << argv[0] << " [-r rate]\n";
+			return -1;
+		}
+		if ((i + 1) < argc) {
+			if (!strcasecmp(argv[i], "-r"))
+				rate = atof(argv[i+1]);
+		}
+	}
 	while (cin.good()) {
 		cin >> hz >> length >> volume;
 		hertz(hz, length, volume);
