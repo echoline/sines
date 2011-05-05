@@ -6,7 +6,7 @@ using namespace std;
 
 float rate = 8000.0f;
 
-void hertz(float hz, float l, double vol) {
+void tone(float hz, float l, double vol) {
 	double p;
 	static double acc = 0;
 	double dur = rate * l; 
@@ -24,13 +24,14 @@ void hertz(float hz, float l, double vol) {
 	}
 	for (; loop < dur; acc += inc, loop++) {
 		output = (unsigned char)(sin(acc) * vol * 127.0) + 128;
-		write(1, &output, 1);
+		cout << output;
 	}
 }
 
 int main(int argc, char **argv) {
 	int i;
 	float hz, length, volume;
+	char buf[128];
 
 	for (i = 1; i < argc; i++) {
 		if (!strcasecmp(argv[i], "-h")) {
@@ -42,9 +43,30 @@ int main(int argc, char **argv) {
 				rate = atof(argv[i+1]);
 		}
 	}
+	i = 0;
 	while (cin.good()) {
-		cin >> hz >> length >> volume;
-		hertz(hz, length, volume);
+		cin >> buf;
+		if (buf[0] == '#') {
+			while (buf[0] != '\n' && cin.good())
+				buf[0] = cin.get();
+			continue;
+		}
+		switch(i % 3) {
+		case 0:
+			hz = atof(buf);
+			i++;
+			break;
+		case 1:
+			length = atof(buf);
+			i++;
+			break;
+		case 2:
+			volume = atof(buf);
+			tone(hz, length, volume);
+			i = 0;
+			break;
+		}
 	}
 	return 0;
 }
+
