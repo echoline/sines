@@ -3,14 +3,14 @@
 	440.00	0.75	1.0
 
 * The first number here says to play a 440 hz tone.
-* The second number says play it for .75 of "one second" (relative to 44100 hz signal by default)
+* The second number says play it for .75 of "one second" (relative to 8000 hz signal by default)
 * The third number says to play it at full volume.
 
 A quarter-second rest looks like this:
 
 	0	.25	0
 
-8b1t converts them into character data corresponding to a Unsigned 8-bit audio at 44100 hertz by default (change at top of 8b1t.cpp file)
+8b1t converts them into character data corresponding to a Unsigned 8-bit audio at 8000 hertz by default
 
 
 
